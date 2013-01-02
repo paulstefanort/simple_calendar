@@ -82,7 +82,7 @@ module SimpleCalendar
                     divs = []
 
 										if options[:link_day]
-											concat content_tag(:div, link_to(date.day.to_s, {:day => date.day.to_i}), :class => "day_number")
+											concat content_tag(:div, link_to(date.day.to_s, {:year => date.year.to_i, :month => date.month.to_i, :day => date.day.to_i}), :class => "day_number")
 										else
                     	concat content_tag(:div, date.day.to_s, :class=>"day_number")
 										end
