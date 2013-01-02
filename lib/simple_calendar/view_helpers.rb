@@ -8,6 +8,8 @@ module SimpleCalendar
       opts = {
           :year       => (params[:year] || Time.zone.now.year).to_i,
           :month      => (params[:month] || Time.zone.now.month).to_i,
+					:day        => (params[:day] || Time.zone.now.day).to_i,
+					:link_day => (params[:link_day] || false),
           :prev_text  => raw("&laquo;"),
           :next_text  => raw("&raquo;"),
           :start_day  => :sunday
@@ -15,11 +17,12 @@ module SimpleCalendar
       options.reverse_merge! opts
       events       ||= []
       selected_month = Date.civil(options[:year], options[:month])
+			selected_date = Date.civil(options[:year], options[:month], options[:day])
       current_date   = Date.today
       range          = build_range selected_month, options
       month_array    = build_month range
 
-      draw_calendar(selected_month, month_array, current_date, events, options, block)
+      draw_calendar(selected_month, month_array, selected_date, current_date, events, options, block)
     end
 
     private
@@ -54,7 +57,7 @@ module SimpleCalendar
     end
 
     # Renders the calendar table
-    def draw_calendar(selected_month, month, current_date, events, options, block)
+    def draw_calendar(selected_month, month, selected_date, current_date, events, options, block)
       tags = []
       today = Date.today
       content_tag(:table, :class => "table table-bordered table-striped calendar") do
@@ -68,6 +71,7 @@ module SimpleCalendar
               week.collect do |date|
                 td_class = ["day"]
                 td_class << "today" if today == date
+								td_class << "selected" if selected_date == date
                 td_class << "not-current-month" if selected_month.month != date.month
                 td_class << "past" if today > date
                 td_class << "future" if today < date
@@ -77,7 +81,11 @@ module SimpleCalendar
                   content_tag(:div) do
                     divs = []
 
-                    concat content_tag(:div, date.day.to_s, :class=>"day_number")
+										if options[:link_day]
+											concat content_tag(:div, link_to(date.day.to_s, {:day => date.day.to_i}), :class => "day_number")
+										else
+                    	concat content_tag(:div, date.day.to_s, :class=>"day_number")
+										end
                     divs << day_events(date, events).collect { |event| block.call(event) }
                     divs.join.html_safe
                   end #content_tag :div
