@@ -115,7 +115,7 @@ module SimpleCalendar
         	tags = []
 
         	tags << content_tag(:li, month_link(options[:prev_text], previous_month, {:class => "previous-month"}))
-        	tags << content_tag(:li, "#{I18n.t("date.month_names")[selected_month.month]} #{selected_month.year}", :class => "disabled")
+        	tags << content_tag(:li, "#{I18n.t("date.month_names")[selected_month.month]} #{selected_month.year}", :class => "active")
         	tags << content_tag(:li, month_link(options[:next_text], next_month, {:class => "next-month"}))
 
         	tags.join.html_safe
