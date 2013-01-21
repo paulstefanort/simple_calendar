@@ -69,7 +69,6 @@ module SimpleCalendar
 					output_day_names = []
 					if options[:start_day] == :sunday
 						output_day_names = day_names
-        		tags << content_tag(:thead, content_tag(:tr, output_day_names.collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 					elsif options[:start_day] == :monday
 						output_day_names << day_names[1] # monday
 						output_day_names << day_names[2] # tuesday
@@ -78,7 +77,6 @@ module SimpleCalendar
 						output_day_names << day_names[5] # friday
 						output_day_names << day_names[6] # saturday
 						output_day_names << day_names[0] # sunday
-        		tags << content_tag(:thead, content_tag(:tr, output_day_names.collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 					elsif options[:start_day] == :tuesday
 						output_day_names << day_names[2] # tuesday
 						output_day_names << day_names[3] # wednesday
@@ -87,7 +85,6 @@ module SimpleCalendar
 						output_day_names << day_names[6] # saturday
 						output_day_names << day_names[0] # sunday
 						output_day_names << day_names[1] # monday
-        		tags << content_tag(:thead, content_tag(:tr, output_day_names.collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 					elsif options[:start_day] == :wednesday
 						output_day_names << day_names[3] # wednesday
 						output_day_names << day_names[4] # thursday
@@ -96,7 +93,6 @@ module SimpleCalendar
 						output_day_names << day_names[0] # sunday
 						output_day_names << day_names[1] # monday
 						output_day_names << day_names[2] # tuesday
-        		tags << content_tag(:thead, content_tag(:tr, output_day_names.collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 					elsif options[:start_day] == :thursday
 						output_day_names << day_names[4] # thursday
 						output_day_names << day_names[5] # friday
@@ -105,7 +101,6 @@ module SimpleCalendar
 						output_day_names << day_names[1] # monday
 						output_day_names << day_names[2] # tuesday
 						output_day_names << day_names[3] # wednesday
-        		tags << content_tag(:thead, content_tag(:tr, output_day_names.collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 					elsif options[:start_day] == :friday
 						output_day_names << day_names[5] # friday
 						output_day_names << day_names[6] # saturday
@@ -114,7 +109,6 @@ module SimpleCalendar
 						output_day_names << day_names[2] # tuesday
 						output_day_names << day_names[3] # wednesday
 						output_day_names << day_names[4] # thursday
-        		tags << content_tag(:thead, content_tag(:tr, output_day_names.collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 					elsif options[:start_day] == :saturday
 						output_day_names << day_names[6] # saturday
 						output_day_names << day_names[0] # sunday
@@ -123,8 +117,8 @@ module SimpleCalendar
 						output_day_names << day_names[3] # wednesday
 						output_day_names << day_names[4] # thursday
 						output_day_names << day_names[5] # friday
-        		tags << content_tag(:thead, content_tag(:tr, output_day_names.collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 					end
+        	tags << content_tag(:thead, content_tag(:tr, output_day_names.collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 				end
         tags << content_tag(:tbody, :'data-month'=>selected_month.month, :'data-year'=>selected_month.year) do
 
