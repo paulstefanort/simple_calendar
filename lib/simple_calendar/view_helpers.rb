@@ -65,7 +65,7 @@ module SimpleCalendar
 				if options[:start_day].blank?
         	tags << content_tag(:thead, content_tag(:tr, I18n.t("date.abbr_day_names").collect { |name| content_tag :th, name, :class => (selected_month.month == Date.today.month && Date.today.strftime("%a") == name ? "current-day" : nil)}.join.html_safe))
 				else
-					day_names = I18n.t("date.abbr_date_names")
+					day_names = I18n.t("date.abbr_day_names")
 					output_day_names = []
 					if options[:start_day] == :sunday
 						output_day_names = day_names
